@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot name="my_robot">
+
+  <!-- Link Definitions -->
+  <link name="base_link"/>
+  <link name="link1"/>
+  <link name="link2"/>
+  <link name="link3"/>
+
+  <!-- Joint Definitions -->
+  <!-- Joint connecting base_link to link1 -->
+  <joint name="JointA" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.5"/>
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+
+  <!-- Joint connecting link1 to link2 -->
+  <joint name="JointB" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0.1 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.5"/>
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+
+  <!-- Joint connecting link2 to link3 -->
+  <joint name="JointC" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0.1 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.5"/>
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+
+  <!-- Transmission Definitions -->
+  <transmission name="trans_JointA">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="JointA">
+      <actuator name="JointA_motor"/>
+      <mechanicalReduction>1</mechanicalReduction>    
+    </joint>
+  </transmission>
+
+  <transmission name="trans_JointB">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="JointB">
+      <actuator name="JointB_motor"/>
+      <mechanicalReduction>1</mechanicalReduction>
+    </joint>
+  </transmission>
+
+  <transmission name="trans_JointC">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="JointC">
+      <actuator name="JointC_motor"/>
+      <mechanicalReduction>1</mechanicalReduction>
+    </joint>
+  </transmission>
+</robot>

@@ -1,0 +1,8 @@
+<launch>
+  
+  <node pkg="my_robot" type="polulu_interface" name="polulu_interface"  />
+  <node pkg="my_robot" type="delta_gui.py" name="delta_gui"  />
+  <node pkg="my_robot" type="gpio_interface.py" name="gpio_interface"  />
+  
+  
+</launch>

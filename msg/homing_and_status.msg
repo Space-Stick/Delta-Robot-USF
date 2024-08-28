@@ -1,0 +1,2 @@
+bool home
+bool position_uncertain

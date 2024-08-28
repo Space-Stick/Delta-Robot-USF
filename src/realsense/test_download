@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Update system and install dependencies
+sudo apt-get update
+sudo apt-get install -y libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev git python3-pip
+
+# Clone the RealSense repository
+git clone https://github.com/IntelRealSense/librealsense.git
+
+# Build and install the RealSense SDK
+cd librealsense
+mkdir build && cd build
+cmake ../ -DBUILD_PYTHON_BINDINGS=true
+make -j4
+sudo make install
+
+# Install Python packages
+pip3 install pyrealsense2
+
+# Enable udev rules
+sudo cp ../config/99-realsense-libusb.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules && sudo udevadm trigger
+
+# Verify installation
+python3 -c "import pyrealsense2 as rs; print(rs.__version__)"
+

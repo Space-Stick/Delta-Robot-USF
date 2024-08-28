@@ -1,0 +1,15 @@
+<launch>
+  <rosparam file="$(find my_robot)/config/controllers.yaml" command="load"/>
+  <param name="robot_description" textfile="$(find my_robot)/urdf/my_robot.urdf"/>
+  
+  <node pkg="my_robot" type="MyRobot_hardware_interface_node" name="MyRobotHardwareInterface" output="screen" />
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args=" 
+        /MyRobot/joints_update
+        /MyRobot/JointA_PositionController"/> -->
+        
+  <!-- Your robot's node or other necessary nodes go here -->
+  
+</launch>
